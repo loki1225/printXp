@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Xpress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #f8f8f8;
+        }
+
+        .buttons {
+            margin: 20px 0;
+        }
+
+        .button {
+            background-color: white;
+            color: #4CAF50;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid #4CAF50;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: calc(100vh - 130px);
+            background-image: url('https://source.unsplash.com/featured/?printing');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .form {
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f8f8f8;
+            width: 100%;
+            text-align: left;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .features {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        #orderSummary {
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .form {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Print Xpress</h1>
+    <p>Your quick and easy printing solution!</p>
+    <div class="buttons">
+        <button onclick="showPage('home')" class="button">Home</button>
+        <button onclick="showPage('login')" class="button">Login</button>
+        <button id="orderButton" onclick="showOrderPage()" class="button">Place an Order</button>
+    </div>
+</header>
+
+<main>
+    <div id="home" class="page fade-in">
+        <section class="features">
+            <h2>Why Choose Print Xpress?</h2>
+            <p>At Print Xpress, we understand the importance of time and efficiency in your printing needs. Our platform connects you directly with local print shops, enabling you to:</p>
+            <ul>
+                <li>💻 <strong>Place Orders Anytime:</strong> Enjoy the convenience of ordering from your device at your own pace.</li>
+                <li>📱 <strong>Quick Uploads:</strong> Easily upload documents for printing in just a few clicks.</li>
+                <li>🚀 <strong>Real-Time Tracking:</strong> Monitor the status of your orders to stay updated.</li>
+                <li>💳 <strong>Flexible Payment Options:</strong> Choose between online payments or cash on delivery.</li>
+                <li>🔧 <strong>Tailored Services:</strong> Customizable options for every customer and shop owner.</li>
+            </ul>
+        </section>
+    </div>
+
+    <div id="login" class="page hidden">
+        <h1>Login to Print Xpress</h1>
+        <form id="loginForm" class="form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <button onclick="showPage('signup')" class="button">Sign up here</button></p>
+    </div>
+
+    <div id="signup" class="page hidden">
+        <h1>Create an Account</h1>
+        <form id="signupForm" class="form">
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" required>
+
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <button onclick="showPage('login')" class="button">Login here</button></p>
+    </div>
+
+    <div id="order" class="page hidden">
+        <h1>Place Your Order</h1>
+        <form id="orderForm" class="form">
+            <label for="document">Upload Document:</label>
+            <input type="file" id="document" accept=".pdf, .doc, .docx" required>
+
+            <label for="copies">Number of Copies:</label>
+            <input type="number" id="copies" required>
+
+            <label for="pages">Number of Pages:</label>
+            <input type="number" id="pages" required>
+
+            <label for="doubleSided">Double-Sided Printing:</label>
+            <select id="doubleSided">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+            <button type="submit">Submit Order</button>
+        </form>
+        <p id="orderSummary" class="hidden"></p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Print Xpress. All rights reserved.</p>
+</footer>
+
+<script>
+    let isLoggedIn = false; // Initial login state
+
+    // Function to show different pages
+    function showPage(page) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(p => {
+            p.classList.add('hidden');
+        });
+        document.getElementById(page).classList.remove('hidden');
+    }
+
+    // Function to handle showing the order page
+    function showOrderPage() {
+        if (isLoggedIn) {
+            showPage('order');
+        } else {
+            alert('You must be logged in to place an order.');
+        }
+    }
+
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        isLoggedIn = true; // Simulate login
+        alert('Login successful! You can now place orders.'); // For demo purposes
+        showPage('home'); // Redirect to home page
+    });
+
+    // Handle signup form submission
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Sign up successful! You can now log in.'); // For demo purposes
+        showPage('login'); // Redirect to login page
+    });
+
+    // Handle order form submission
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const documentFile = document.getElementById('document').files[0];
+        const copies = document.getElementById('copies').value;
+        const pages = document.getElementById('pages').value;
+        const doubleSided = document.getElementById('doubleSided').value;
+
+        const pricePerPage = 0.10; // Price per page in dollars
+        const totalPrice = (pages * pricePerPage * copies) * (doubleSided == 1 ? 2 : 1); // Adjust price for double-sided
+
+        const fileSize = documentFile.size / 1024; // Convert to KB
+        const summary = `Order Summary: ${copies} copies of ${pages} pages (Double-sided: ${doubleSided == 1 ? 'Yes' : 'No'}). Total price: $${totalPrice.toFixed(2)}. Document uploaded: ${documentFile.name} (Size: ${fileSize.toFixed(2)} KB)`;
+
+        document.getElementById('orderSummary').innerText = summary;
+        document.getElementById('orderSummary').classList.remove('hidden');
+    });
+
+    // Show the home page by default
+    showPage('home');
+</script>
+</body>
+</html>
